@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project[2] }} - BitCode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+</head>
+<body>
+
+<div class="view-container page-container">
+    <h1>{{ project[2] }}</h1>
+
+    {% if session.get("user_id") != project[1] %}
+        <p class="byline">by <a href="/profile/{{ project[6] }}">{{ project[6] }}</a></p>
+    {% endif %}
+
+    {% if project[5] %}
+        <p class="description">{{ project[5] }}</p>
+    {% endif %}
+
+    <div id="editor" style="height:500px;"></div>
+
+    <div class="view-actions">
+        {% if session.get("user_id") == project[1] %}
+            <a href="/dashboard" class="btn">Back</a>
+            <a href="/edit_project/{{ project[0] }}" class="btn">Edit</a>
+        {% else %}
+            <a href="/profile/{{ project[6] }}" class="btn">View Creator Profile</a>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+
+require(['vs/editor/editor.main'], function() {
+    monaco.editor.create(document.getElementById('editor'), {
+        value: `{{ project[3] }}`,
+        language: "javascript",
+        theme: "vs-dark",
+        readOnly: true
+    });
+});
+</script>
+
+</body>
+</html>

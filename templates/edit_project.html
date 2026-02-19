@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Project - BitCode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+</head>
+<body>
+
+<div class="page-container">
+    <h1>Edit Project</h1>
+
+    <form method="POST" onsubmit="saveCode()" class="project-form">
+        <input type="text" name="title" value="{{ project[1] }}" required>
+        <textarea name="description" rows="3" placeholder="Short project description">{{ project[2] }}</textarea>
+        <input type="hidden" name="code" id="codeInput">
+        <div id="editor" style="height:500px;"></div>
+        <label>
+            <input type="checkbox" name="is_public" {% if project[4] == 1 %}checked{% endif %}>
+            Public
+        </label>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>
+
+<script>
+require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+
+require(['vs/editor/editor.main'], function() {
+    window.editor = monaco.editor.create(document.getElementById('editor'), {
+        value: `{{ project[3] }}`,
+        language: "javascript",
+        theme: "vs-dark"
+    });
+});
+
+function saveCode() {
+    document.getElementById("codeInput").value = editor.getValue();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - BitCode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container page-container">
+    <h1>My Projects</h1>
+
+    <a href="/create_project" class="btn">Create New Project</a>
+
+    <div class="project-list">
+        {% if projects %}
+            {% for project in projects %}
+                <div class="project-card">
+                    <h3>{% if project[2] == 1 %}Public{% else %}Private{% endif %} - {{ project[1] }}</h3>
+                    {% if project[3] %}
+                        <p class="description">{{ project[3] }}</p>
+                    {% endif %}
+                    <a href="/edit_project/{{ project[0] }}" class="btn small">Edit</a>
+                    <a href="/project/{{ project[0] }}" class="btn small" target="_blank" rel="noopener noreferrer">View</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No projects yet.</p>
+        {% endif %}
+    </div>
+
+    <a href="/profile" class="btn">Back to Profile</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up - BitCode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="auth-container">
+    <h2>Create a BitCode Account</h2>
+
+    <form method="POST" class="auth-form">
+        <input type="text" name="username" placeholder="Choose Username" required>
+        <input type="password" name="password" placeholder="Choose Password" required>
+        <button type="submit">Create Account</button>
+    </form>
+
+    <p class="auth-switch">
+        Already have an account? <a href="/login">Login</a>
+    </p>
+</div>
+
+</body>
+</html>

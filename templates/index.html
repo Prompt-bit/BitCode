@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>BitCode - Bring your idea to life with coding</title>
+</head>
+<body>
+
+    <h1 class="typing">BitCode - Bring your Idea to Life with Coding</h1>
+    <p class="p">Whether it's a game, an app or just a plan code your project yourself, or use BitCode AI which could help you with almost anything.</p>
+    <div class="semi">
+        <h2>About</h2>
+        <p>BitCode is open-source. Meaning you could use any assets, except the logo in your projects. Pictures, CSS, JavaScript, etc. All of these are free to use but though please ask for permission.</p>
+        <strong>You May Contact Me At</strong>
+        <span class="email">phawach4prompt+bitcode@gmail.com</span>
+    </div>
+    <div class="semi">
+        <h2>Ready?</h2>
+        <a href="signup">
+            <button>Get Started</button>
+        </a>
+    </div>
+    <script>
+        const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        if (!isDarkMode) {
+            document.getElementById("theme-warning").style.display = "block";
+        }
+    </script>
+</body>
+</html>
+
