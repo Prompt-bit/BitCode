@@ -59,5 +59,15 @@
     </div>
 </body>
 </html>
+<script>
+fetch("/api/data")
+  .then(res => res.json())
+  .then(data => {
+      document.getElementById("content").innerText = "Loaded!";
+  })
+  .catch(() => {
+      document.getElementById("content").innerText = "Error loading data";
+  });
+</script>
 
 
