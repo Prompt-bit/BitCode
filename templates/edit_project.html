@@ -6,6 +6,40 @@
     <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
 </head>
 <body>
+        <div id="loader">
+        <div class="spinner"></div>
+    </div>
+        <style>
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-family: sans-serif;
+        }
+
+        .spinner {
+            border: 6px solid #eee;
+            border-top: 6px solid #4CAF50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body.loaded #loader {
+            display: none;
+        }
+    </style>
 
 <div class="page-container">
     <h1>Edit Project</h1>
@@ -42,3 +76,4 @@ function saveCode() {
 
 </body>
 </html>
+
