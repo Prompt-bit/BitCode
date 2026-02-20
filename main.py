@@ -247,6 +247,16 @@ def edit_project(project_id):
     conn.close()
     return render_template("edit_project.html", project=project)
 
+@app.route("/api/data")
+def get_data():
+    conn = sqlite3.connect("app.db", timeout=5)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM something")
+    data = cursor.fetchall()
+    conn.close()
+    return {"data": data}
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5050", debug=True)
+
