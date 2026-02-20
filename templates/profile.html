@@ -1,49 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ user[1] }} - Profile - BitCode</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-
-<div class="profile-container page-container">
-    <h1>{{ user[1] }}'s Profile</h1>
-
-    <div class="profile-card">
-        <p><strong>User ID:</strong> {{ user[0] }}</p>
-        <p><strong>Username:</strong> {{ user[1] }}</p>
+    <div id="loader">
+        <div class="spinner"></div>
     </div>
+        <style>
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-family: sans-serif;
+        }
 
-    {% if is_owner %}
-        <div class="profile-actions">
-            <a href="/create_project" class="btn">Create Project</a>
-            <a href="/dashboard" class="btn">My Projects</a>
-            <a href="/logout" class="btn logout">Logout</a>
-        </div>
-    {% endif %}
+        .spinner {
+            border: 6px solid #eee;
+            border-top: 6px solid #4CAF50;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
 
-    <h2>{% if is_owner %}Your Projects{% else %}Public Projects{% endif %}</h2>
-    <div class="project-list">
-        {% if projects %}
-            {% for project in projects %}
-                <div class="project-card">
-                    <h3>{{ project[1] }}</h3>
-                    {% if project[3] %}
-                        <p class="description">{{ project[3] }}</p>
-                    {% endif %}
-                    <p>Status: {% if project[2] == 1 %}Public{% else %}Private{% endif %}</p>
-                    <a href="/project/{{ project[0] }}" class="btn small" target="_blank" rel="noopener noreferrer">View Project</a>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No projects to show.</p>
-        {% endif %}
-    </div>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    {% if not is_owner %}
-        <a href="/" class="btn">Back Home</a>
-    {% endif %}
-</div>
-
-</body>
-</html>
+        body.loaded #loader {
+            display: none;
+        }
+    </style>
