@@ -27,9 +27,9 @@ require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@latest/min/vs' }}
 
 require(['vs/editor/editor.main'], function() {
     window.editor = monaco.editor.create(document.getElementById('editor'), {
-        value: "// Welcome to BitCode",
+        value: "// Welcome to BitCode. For now python is the only language in here.",
         language: "javascript",
-        theme: "vs-dark"
+        theme: "vs-light"
     });
 });
 
@@ -40,3 +40,4 @@ function saveCode() {
 
 </body>
 </html>
+
